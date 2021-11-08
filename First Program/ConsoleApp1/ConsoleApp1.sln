@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{5C3317FB-6E6E-49F3-81BA-E0A2E0043FCD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calculator", "Calculator\Calculator.vcxproj", "{01EA5981-A079-4955-883C-8194138B736D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,16 +27,6 @@ Global
 		{5C3317FB-6E6E-49F3-81BA-E0A2E0043FCD}.Release|x64.Build.0 = Release|Any CPU
 		{5C3317FB-6E6E-49F3-81BA-E0A2E0043FCD}.Release|x86.ActiveCfg = Release|Any CPU
 		{5C3317FB-6E6E-49F3-81BA-E0A2E0043FCD}.Release|x86.Build.0 = Release|Any CPU
-		{01EA5981-A079-4955-883C-8194138B736D}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{01EA5981-A079-4955-883C-8194138B736D}.Debug|x64.ActiveCfg = Debug|x64
-		{01EA5981-A079-4955-883C-8194138B736D}.Debug|x64.Build.0 = Debug|x64
-		{01EA5981-A079-4955-883C-8194138B736D}.Debug|x86.ActiveCfg = Debug|Win32
-		{01EA5981-A079-4955-883C-8194138B736D}.Debug|x86.Build.0 = Debug|Win32
-		{01EA5981-A079-4955-883C-8194138B736D}.Release|Any CPU.ActiveCfg = Release|Win32
-		{01EA5981-A079-4955-883C-8194138B736D}.Release|x64.ActiveCfg = Release|x64
-		{01EA5981-A079-4955-883C-8194138B736D}.Release|x64.Build.0 = Release|x64
-		{01EA5981-A079-4955-883C-8194138B736D}.Release|x86.ActiveCfg = Release|Win32
-		{01EA5981-A079-4955-883C-8194138B736D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
