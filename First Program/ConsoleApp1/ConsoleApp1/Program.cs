@@ -10,21 +10,24 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World! Please enter one number");
-            string number1 = Console.ReadLine();
-            Console.WriteLine("Please enter another number.");
-            string number2 = Console.ReadLine();
-            int n1 = int.Parse(number1);
-            int n2 = int.Parse(number2);
-            int res = n1 * n2;
-            Console.WriteLine("The result is: {0}", res);
+            Console.WriteLine("Hello World! Please enter your first name");
+            string name1 = Console.ReadLine();
+            Console.WriteLine("Please enter your second name");
+            string name2 = Console.ReadLine();
+            if(name1.Equals("") && name2.Equals(""))
+            {
+                Console.WriteLine("You didn't enter a name");
+            }
+            else if (name2.Equals("") || name1.Equals(""))
+            {
+                Console.WriteLine("Hello, {0}{1}! I see you only have one name, but that's fine!", name1, name2);
+            }
+            else
+            {
+                Console.WriteLine("Hello, {0} {1}!", name1, name2);
+            }
             Console.ReadLine();
         }
     }
-    class Calculator
-    {
-        public Calculator()
-        {
-        }
-    }
+    
 }
