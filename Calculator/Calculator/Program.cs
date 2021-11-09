@@ -132,25 +132,40 @@ namespace Calculator
         public int doOp()
         {
             string[] numList = operands.Split(",");
-            int runningT = int.Parse(numList[0]);
-            Console.WriteLine("Total is: {0}", numList[0]);
-
-            for (int c = 1; c <numList.Length; c++)
+            int runningT; if(int.TryParse(numList[0], out runningT))
             {
-                
-                int x = int.Parse(numList[c].ToString());
+                for (int c = 1; c < numList.Length; c++)
+                {
+                    int x;
+                    if (int.TryParse(numList[c].ToString(), out x))
+                    {
+                        if (this.op == '+')
+                            runningT += x;
+                        else if (this.op == '-')
+                            runningT -= x;
+                        else if (this.op == '*')
+                            runningT *= x;
+                        else
+                            runningT /= x;
 
-                if (this.op == '+')
-                    runningT += x;
-                else if (this.op == '-')
-                    runningT -= x;
-                else if (this.op == '*')
-                    runningT *= x;
-                else
-                    runningT /= x;
+                        Console.WriteLine("Total is: {0}", runningT);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please only enter numbers. Cancelling operation...");
+                        return -777;
+                    }
 
-                Console.WriteLine("Total is: {0}", runningT);
+
+                }
             }
+            else
+            {
+                Console.WriteLine("Please only enter numbers. Cancelling operation...");
+                return -777;
+            }
+
+            
             return runningT;
             
         }
