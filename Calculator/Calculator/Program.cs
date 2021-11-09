@@ -6,16 +6,89 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            Calculator c1 = new Calculator();
+            
             Console.WriteLine("Welcome to the calculator\n=============================");
-            c1.getOperator();
-            c1.getInputs();
-            int res = c1.doOp();
-            Console.WriteLine("The answer is {0}", res);
-            Console.ReadLine();
+            while (true)
+            {
+                Calculator c1 = new Calculator();
+                c1.getOperator();
+                c1.getInputs();
 
+                Console.Write("Continue? Y/N: ");
+                if (Console.ReadLine().ToUpper().Equals("N"))
+                    break;
+            }
+        }
+        private static void PerformOneCalculation()
+        {
+            var op = AskForOperator();
+            var numbers = AskForNumberArray(op);
+            var answer = CalculateAnswer(op, numbers);
+
+            Console.WriteLine("The answer is: " + answer);
+            Console.WriteLine();
+        }
+
+        private static string AskForOperator()
+        {
+            Console.Write("Please enter the operator: ");
+            string op = Console.ReadLine();
+            return op;
+        }
+
+        private static int[] AskForNumberArray(string op)
+        {
+            var count = AskForNumber("How many numbers do you want to " + op + "? ");
+
+            int[] numbers = new int[count];
+            for (int index = 0; index < count; index++)
+            {
+                numbers[index] = AskForNumber("Please enter number " + (index + 1) + ": ");
+            }
+            return numbers;
+        }
+
+        private static int AskForNumber(string message)
+        {
+            int count;
+
+            do
+            {
+                Console.Write(message);
+            } while (!int.TryParse(Console.ReadLine(), out count));
+
+            return count;
+        }
+
+        private static int CalculateAnswer(string op, int[] numbers)
+        {
+            int answer = numbers[0];
+
+            for (int index = 1; index < numbers.Length; index++)
+            {
+                if (op == "*")
+                {
+                    answer = answer * numbers[index];
+                }
+                else if (op == "/")
+                {
+                    answer = answer / numbers[index];
+                }
+                else if (op == "+")
+                {
+                    answer = answer + numbers[index];
+                }
+                else if (op == "-")
+                {
+                    answer = answer - numbers[index];
+                }
+            }
+            return answer;
         }
     }
+
+
+
     class Calculator
     {
         char op = '+';
@@ -26,6 +99,7 @@ namespace Calculator
         {
 
         }
+        
         public void getOperator()
         {
             Console.WriteLine("Please enter the operator.");
@@ -41,21 +115,30 @@ namespace Calculator
             for(int i = 1; i <= noNums; i++)
             {
                 Console.WriteLine("Please enter number {0}:", i);
-                operands = operands + Console.ReadLine().ToCharArray()[0];
+                operands = operands + Console.ReadLine();
                 if (i == 1)
                     n1 = i;
-                    
+                if (i < noNums)
+                    operands += ",";
             }
+            this.show_res(this.doOp());
             
+        }
+        public void show_res(int res)
+        {
+            Console.WriteLine("The answer is {0}", res);
+            Console.ReadLine();
         }
         public int doOp()
         {
-            int runningT = n1;
-            char[] numList = operands.ToCharArray();
-            for(int c = 1; c <operands.Length; c++)
+            string[] numList = operands.Split(",");
+            int runningT = int.Parse(numList[0]);
+            Console.WriteLine("Total is: {0}", numList[0]);
+
+            for (int c = 1; c <numList.Length; c++)
             {
-                String s = numList[c].ToString();
-                int x = int.Parse(s);
+                
+                int x = int.Parse(numList[c].ToString());
 
                 if (this.op == '+')
                     runningT += x;
@@ -65,6 +148,8 @@ namespace Calculator
                     runningT *= x;
                 else
                     runningT /= x;
+
+                Console.WriteLine("Total is: {0}", runningT);
             }
             return runningT;
             
