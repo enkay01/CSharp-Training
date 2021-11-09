@@ -10,9 +10,25 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            times_tables();
+            sentence_loop();
             Console.ReadLine();
         }
+
+        public static void sentence_loop()
+        {
+            string sentence = "";
+            while (true)
+            {
+                Console.WriteLine("Enter a word: ");
+                string s = Console.ReadLine();
+                if (s.Equals(""))
+                    break;
+                sentence += s + " ";
+                Console.WriteLine("Current sentence: {0}", sentence);
+            }
+            Console.WriteLine("Final sentence: {0}", sentence);
+        }
+
         public static void times_tables()
         {
             Console.WriteLine("Hello World! Please enter a number");
