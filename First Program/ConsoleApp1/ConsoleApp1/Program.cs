@@ -54,7 +54,7 @@ namespace ConsoleApp1
             }
             Console.WriteLine("The sum of numbers 1 to {0} is: {1}", max, sum);
         }
-        public static void nameFunction()
+        public static void greeting_program()
         {
             Console.WriteLine("Hello World! Please enter your first name");
             string name1 = Console.ReadLine();
@@ -70,10 +70,20 @@ namespace ConsoleApp1
             }
             else
             {
+                if (isAllUpper(name1) || isAllUpper(name2))
+                    Console.WriteLine("No need to shout!");
                 Console.WriteLine("Hello, {0} {1}!", name1, name2);
             }
             Console.ReadLine();
 
+        }
+        public static bool isAllUpper(string word)
+        {
+            foreach(char c in word){
+                if (Char.IsLetter(c) && !Char.IsUpper(c))
+                    return false;
+            }
+            return true;
         }
     }
 }
