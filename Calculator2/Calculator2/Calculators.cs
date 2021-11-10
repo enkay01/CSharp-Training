@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,7 @@ namespace Calculator2
     class NumberCalculator
     {
         string nNumbersPrompt = "How many numbers do you want to {0}";
-        string numberPrompt = "Please enter number {0}:";
+        string numberPrompt = "Please enter the next number:";
 
         public NumberCalculator() 
         {
@@ -72,11 +73,19 @@ namespace Calculator2
         public void performNumberCalculation()
         {
             var op = AskForOperator();
-            var numbers = AskForNumberArray(op);
-            var answer = CalculateAnswer(op, numbers);
+            ArrayList numbers = AskForOperands(numberPrompt);
+            if(numbers.Count > 0)
+            {
+                var answer = CalcAnswer(op, numbers);
 
-            Console.WriteLine("The answer is: " + answer);
-            Console.WriteLine();
+                Console.WriteLine("The answer is: " + answer);
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Cancelling operation...");
+            }
+            
         }
         private int[] AskForNumberArray(string op)
         {
@@ -89,6 +98,7 @@ namespace Calculator2
             }
             return numbers;
         }
+        
 
         private int AskForNumber(string message, string op)
         {
@@ -101,7 +111,25 @@ namespace Calculator2
 
             return count;
         }
+        private ArrayList AskForOperands(string message)
+        {
+            ArrayList operands = new ArrayList();
+            int num;
+            
+            while (true)
+            {
+                Console.Write(message);
+                string l = Console.ReadLine();
+                if (l.Equals(""))
+                    break;
+                if(int.TryParse(l, out num))
+                {
+                    operands.Add(num);
+                }
 
+            }
+            return operands;
+        }
         private  int CalculateAnswer(string op, int[] numbers)
         {
             int answer = numbers[0];
@@ -123,6 +151,31 @@ namespace Calculator2
                 else if (op == "-")
                 {
                     answer = answer - numbers[index];
+                }
+            }
+            return answer;
+        }
+        private int CalcAnswer(string op, ArrayList numbers)
+        {
+            int answer = (int) numbers[0];
+            //numbers.Remove(0);
+            foreach(int n in numbers)
+            {
+                if (op == "*")
+                {
+                    answer = answer * n;
+                }
+                else if (op == "/")
+                {
+                    answer = answer / n;
+                }
+                else if (op == "+")
+                {
+                    answer = answer + n;
+                }
+                else if (op == "-")
+                {
+                    answer = answer - n;
                 }
             }
             return answer;

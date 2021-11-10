@@ -9,7 +9,7 @@ namespace Calculator2
         static string welcomeString = "Welcome to the calculator\n" +
                                "=========================";
         static string modeQuestion = "\nWhich mode do you want?\n" +
-                                  "1) Numbers\n2) Dates\n>";
+                                  "1) Numbers\n2) Dates\n3) Exit\n> ";
         static void Main(string[] args)
         {
             while (true)
