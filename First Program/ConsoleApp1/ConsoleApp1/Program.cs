@@ -86,4 +86,60 @@ namespace ConsoleApp1
             return true;
         }
     }
+    class Person
+    {
+        private string fname;
+        private string sname;
+        private int age = 0;
+        public Person()
+        {
+            
+        }
+        public void getNames()
+        {
+            Console.Write("Hello World! Please enter your first name: ");
+            this.fname = Console.ReadLine();
+            Console.Write("\nPlease enter your second name: ");
+            this.sname = Console.ReadLine();
+        }
+        public void getAge()
+        {
+            do
+            {
+                Console.Write("\nPlease enter your age: ");
+            } while (!int.TryParse(Console.ReadLine(), out this.age) && age > 0);
+        }
+        public void doGreeting()
+        {
+            if (fname.Equals("") && sname.Equals(""))
+            {
+                Console.WriteLine("You didn't enter a name");
+            }
+            else if (fname.Equals("") || sname.Equals(""))
+            {
+                Console.WriteLine("Hello, {0}{1}! I see you only have one name, but that's fine!", fname, sname);
+            }
+            else
+            {
+                if (isAllUpper(fname) || isAllUpper(sname))
+                    Console.WriteLine("No need to shout!");
+                Console.WriteLine("Hello, {0} {1}!", fname, sname);
+            }
+        }
+        public bool isAllUpper(string word)
+        {
+            foreach (char c in word)
+            {
+                if (Char.IsLetter(c) && !Char.IsUpper(c))
+                    return false;
+            }
+            return true;
+        }
+        public bool isUnderTen()
+        {
+            if (age < 10)
+                return true;
+            return false;
+        }
+    }
 }
