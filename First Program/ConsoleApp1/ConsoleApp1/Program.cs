@@ -54,7 +54,7 @@ namespace ConsoleApp1
             }
             Console.WriteLine("The sum of numbers 1 to {0} is: {1}", max, sum);
         }
-        public static void nameFunction()
+        public static void greeting_program()
         {
             Console.WriteLine("Hello World! Please enter your first name");
             string name1 = Console.ReadLine();
@@ -70,10 +70,76 @@ namespace ConsoleApp1
             }
             else
             {
+                if (isAllUpper(name1) || isAllUpper(name2))
+                    Console.WriteLine("No need to shout!");
                 Console.WriteLine("Hello, {0} {1}!", name1, name2);
             }
             Console.ReadLine();
 
+        }
+        public static bool isAllUpper(string word)
+        {
+            foreach(char c in word){
+                if (Char.IsLetter(c) && !Char.IsUpper(c))
+                    return false;
+            }
+            return true;
+        }
+    }
+    class Person
+    {
+        private string fname;
+        private string sname;
+        private int age = 0;
+        public Person()
+        {
+            
+        }
+        public void getNames()
+        {
+            Console.Write("Hello World! Please enter your first name: ");
+            this.fname = Console.ReadLine();
+            Console.Write("\nPlease enter your second name: ");
+            this.sname = Console.ReadLine();
+        }
+        public void getAge()
+        {
+            do
+            {
+                Console.Write("\nPlease enter your age: ");
+            } while (!int.TryParse(Console.ReadLine(), out this.age) && age > 0);
+        }
+        public void doGreeting()
+        {
+            if (fname.Equals("") && sname.Equals(""))
+            {
+                Console.WriteLine("You didn't enter a name");
+            }
+            else if (fname.Equals("") || sname.Equals(""))
+            {
+                Console.WriteLine("Hello, {0}{1}! I see you only have one name, but that's fine!", fname, sname);
+            }
+            else
+            {
+                if (isAllUpper(fname) || isAllUpper(sname))
+                    Console.WriteLine("No need to shout!");
+                Console.WriteLine("Hello, {0} {1}!", fname, sname);
+            }
+        }
+        public bool isAllUpper(string word)
+        {
+            foreach (char c in word)
+            {
+                if (Char.IsLetter(c) && !Char.IsUpper(c))
+                    return false;
+            }
+            return true;
+        }
+        public bool isUnderTen()
+        {
+            if (age < 10)
+                return true;
+            return false;
         }
     }
 }
