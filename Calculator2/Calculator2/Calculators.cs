@@ -73,7 +73,7 @@ namespace Calculator2
         public void performNumberCalculation()
         {
             var op = AskForOperator();
-            ArrayList numbers = AskForOperands(numberPrompt);
+            List<int> numbers = AskForOperands(numberPrompt);
             if(numbers.Count > 0)
             {
                 var answer = CalcAnswer(op, numbers);
@@ -111,9 +111,9 @@ namespace Calculator2
 
             return count;
         }
-        private ArrayList AskForOperands(string message)
+        private List<int> AskForOperands(string message)
         {
-            ArrayList operands = new ArrayList();
+            List<int> operands = new List<int>();
             int num;
             
             while (true)
@@ -155,30 +155,28 @@ namespace Calculator2
             }
             return answer;
         }
-        private int CalcAnswer(string op, ArrayList numbers)
+        
+        private int CalcAnswer(string op, List<int> numbers)
         {
-            int answer = (int) numbers[0];
-            numbers.Remove(numbers[0]);
-            foreach(int n in numbers)
-            {
+            
                 if (op == "*")
                 {
-                    answer = answer * n;
+                    return numbers.Aggregate(1, (acc, number) => acc * number);
                 }
                 else if (op == "/")
                 {
-                    answer = answer / n;
+                return numbers.Skip(1).Aggregate(numbers[0], (acc, number) => acc / number);
                 }
                 else if (op == "+")
                 {
-                    answer = answer + n;
+                    return numbers.Sum();
                 }
                 else if (op == "-")
                 {
-                    answer = answer - n;
+                    return numbers.Skip(1).Aggregate(numbers[0], (acc, number) => acc - number);
                 }
-            }
-            return answer;
+            return -1;
+            
         }
 
     }
