@@ -158,7 +158,7 @@ namespace Calculator2
         private int CalcAnswer(string op, ArrayList numbers)
         {
             int answer = (int) numbers[0];
-            //numbers.Remove(0);
+            numbers.Remove(numbers[0]);
             foreach(int n in numbers)
             {
                 if (op == "*")
