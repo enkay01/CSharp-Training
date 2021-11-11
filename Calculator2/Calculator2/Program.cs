@@ -4,46 +4,55 @@ namespace Calculator2
 {
     class Program
     {
-        static string nAnString = "Error. Please enter either 1 or 2.";
        
-        static string welcomeString = "Welcome to the calculator\n" +
-                               "=========================";
-        static string modeQuestion = "\nWhich mode do you want?\n" +
-                                  "1) Numbers\n2) Dates\n3) Exit\n> ";
+        static string welcomeString;
+        enum CalculatorType
+        {
+            Number,
+            Date,
+            Exit
+        }
         static void Main(string[] args)
         {
             while (true)
             {
-                printWelcomeMessage();
-                int mode = getMode();
-                if(mode == 1)
+                try{
+                    printWelcomeMessage();
+                    int mode = getMode();
+                    if (mode == 1)
+                    {
+                        NumberCalculator nc = new();
+                    }
+                    else if (mode == 2)
+                    {
+                        DateCalculator dc = new();
+                    }
+                    else if (mode == 3)
+                    {
+                        Console.WriteLine("Exiting...");
+                        break;
+                    }
+                    else
+                    {
+                        showError(string.Format("Error. Please enter either {0}, {1}, or {2}.", (int) CalculatorType.Number, (int) CalculatorType.Date, (int) CalculatorType.Exit));
+                    }
+                }catch(InvalidOperatorException e)
                 {
-                    NumberCalculator nc = new NumberCalculator();
-                }
-                else if (mode == 2)
-                {
-                    DateCalculator dc = new DateCalculator();
-                }
-                else if (mode == 3)
-                {
-                    Console.WriteLine("Exiting...");
-                    break;
-                }
-                else
-                {
-                    showError(nAnString);
+                    Console.WriteLine("There was an error: " + e.Message + "\n");
                 }
             }
         }
         public static void printWelcomeMessage()
         {
             
-            Console.WriteLine(welcomeString);
+            Console.WriteLine("Welcome to the calculator\n" +
+                               "=========================");
         }
         static int getMode()
         {
             
-            Console.Write(modeQuestion);
+            Console.Write("\nWhich mode do you want?\n" +
+                                  "{0}) Numbers\n{1}) Dates\n{2}) Exit\n> ", (int) CalculatorType.Number, (int) CalculatorType.Date, (int) CalculatorType.Exit);
             int ans;
             if(int.TryParse(Console.ReadLine(), out ans))
             {

@@ -130,52 +130,23 @@ namespace Calculator2
             }
             return operands;
         }
-        private  int CalculateAnswer(string op, int[] numbers)
-        {
-            int answer = numbers[0];
-
-            for (int index = 1; index < numbers.Length; index++)
-            {
-                if (op == "*")
-                {
-                    answer = answer * numbers[index];
-                }
-                else if (op == "/")
-                {
-                    answer = answer / numbers[index];
-                }
-                else if (op == "+")
-                {
-                    answer = answer + numbers[index];
-                }
-                else if (op == "-")
-                {
-                    answer = answer - numbers[index];
-                }
-            }
-            return answer;
-        }
         
         private int CalcAnswer(string op, List<int> numbers)
         {
-            
-                if (op == "*")
-                {
+            switch (op)
+            {
+                case "*":
                     return numbers.Aggregate(1, (acc, number) => acc * number);
-                }
-                else if (op == "/")
-                {
-                return numbers.Skip(1).Aggregate(numbers[0], (acc, number) => acc / number);
-                }
-                else if (op == "+")
-                {
+                case "/":
+                    return numbers.Skip(1).Aggregate(numbers[0], (acc, number) => acc / number);
+                case "+":
                     return numbers.Sum();
-                }
-                else if (op == "-")
-                {
+                case "-":
                     return numbers.Skip(1).Aggregate(numbers[0], (acc, number) => acc - number);
-                }
-            return -1;
+                default:
+                    return -1;
+                    
+            }
             
         }
 
